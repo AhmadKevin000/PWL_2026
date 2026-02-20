@@ -27,7 +27,5 @@ Route::get('/posts/{post}/comments/{comment}', [CommentController::class]);
 
 Route::get('/articles/{id}', [ArticleController::class]);
 
-Route::get('/greeting', function () {
-    return view('hello', ['name' => 'Andi']);
-});
+Route::get('/greeting', [WelcomeController::class, 'greeting']);
 
