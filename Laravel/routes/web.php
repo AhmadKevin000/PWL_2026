@@ -6,6 +6,9 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PhotoController;
+
+Route::resource('photos', PhotoController::class)->only(['index', 'show']);
 
 Route::get('/', [HomeController::class]);
 
@@ -26,3 +29,4 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
 });
 
 Route::get('/articles/{id}', [ArticleController::class]);
+
