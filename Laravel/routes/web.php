@@ -30,3 +30,7 @@ Route::get('/posts/{post}/comments/{comment}', function ($postId, $commentId) {
 
 Route::get('/articles/{id}', [ArticleController::class]);
 
+Route::get('/greeting', function () {
+    return view('hello', ['name' => 'Andi']);
+});
+
