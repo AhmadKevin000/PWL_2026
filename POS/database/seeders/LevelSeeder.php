@@ -17,8 +17,14 @@ class LevelSeeder extends Seeder
             ['level_kode' => 'ADM', 'level_nama' => 'Administrator'],
             ['level_kode' => 'MNG', 'level_nama' => 'Manager'],
             ['level_kode' => 'STF', 'level_nama' => 'Staff/Kasir'],
+            ['level_kode' => 'CUS', 'level_nama' => 'Pelanggan'],
         ];
 
-        DB::table('m_level')->insert($data);
+        foreach ($data as $item) {
+            DB::table('m_level')->updateOrInsert(
+                ['level_kode' => $item['level_kode']],
+                ['level_nama' => $item['level_nama']]
+            );
+        }
     }
 }
