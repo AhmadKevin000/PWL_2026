@@ -31,18 +31,21 @@ class PostForm
                         ->schema([
                             TextInput::make('title')
                                 ->label('Judul')
-                                ->required()
-                                ->minLength(5)
+                                ->rules(['required', 'min:5', 'max:10'])
                                 ->columnSpanFull(),
 
                             TextInput::make('slug')
                                 ->label('Slug')
-                                ->required()
-                                ->unique(ignoreRecord: true),
+                                ->rules(['required', 'min:3', 'max:50'])
+                                ->unique()
+                                ->validationMessages([
+                                    "unique" => "Slug must be unique"
+                                ]),
 
                             Select::make('category_id')
                                 ->label('Kategori')
                                 ->relationship('category', 'name')
+                                ->required()
                                 ->preload()
                                 ->searchable(),
 
@@ -63,6 +66,7 @@ class PostForm
                         ->schema([
                             FileUpload::make('image')
                                 ->label('Gambar Unggulan')
+                                ->required()
                                 ->disk('public')
                                 ->directory('posts')
                                 ->image()
