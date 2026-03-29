@@ -100,9 +100,12 @@ class PostForm
                         ->description('Tambahkan tag untuk SEO dan kategorisasi')
                         ->icon('heroicon-o-tag')
                         ->schema([
-                            TagsInput::make('tags')
+                            Select::make('tags')
                                 ->label('Tag')
-                                ->separator(','),
+                                ->relationship('tags', 'name')
+                                ->multiple()
+                                ->searchable()
+                                ->preload(),
                         ]),
 
                 ])->columnSpan(1), // ← 1/3 dari total 3 kolom
